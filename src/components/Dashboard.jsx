@@ -1,15 +1,9 @@
+import DashContainer from "./DashContainer";
+import Sidebar from "./Sidebar";
 
-import  DashContainer  from './DashContainer';
-import Sidebar from './Sidebar';
-
-const Dashboard = () => {
-    return (
-        <DashContainer 
-        sidebar={<Sidebar />} 
-        content={<div>Conteúdo do Dashboard</div>} 
-      />
-  
-    );
-}
+const Dashboard = ({ dashboard_content }) => {
+  return <DashContainer sidebar={<Sidebar />} 
+  content={dashboard_content} />;
+};
 
 export default Dashboard;
