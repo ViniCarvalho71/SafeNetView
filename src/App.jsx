@@ -11,7 +11,7 @@ function App() {
       <Route path="/" element={<Form />} />
       <Route
         path="/Dashboard"
-        element={<Dashboard dashboard_content={<Home />} />}
+        element={<Dashboard/>}
       />
     </Routes>
   );

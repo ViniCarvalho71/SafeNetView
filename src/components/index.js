@@ -5,7 +5,6 @@ export { default as Form } from "./Form";
 export { default as Label } from "./Label";
 export { default as Dashboard } from "./Dashboard";
 export { default as Sidebar } from "./Sidebar";
-export { default as DashboardContainer } from "./DashContainer";
 export { default as Item } from "./NavbarComponents/Item";
 export { default as Card } from "./KPIComponents/Card";
 export { default as Kpi } from "./Kpi";

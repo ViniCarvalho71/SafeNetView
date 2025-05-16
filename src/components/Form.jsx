@@ -6,12 +6,33 @@ import LoginContainer from "./LoginContainer";
 
 const Form = () => {
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Email:", email);
-    console.log("Senha:", senha);
+
+    try {
+      const response = await fetch("http://localhost:5101/login?useCookies=true", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const text = await response.text();
+        throw new Error(text || "Erro ao realizar login.");
+      }
+
+      // Redireciona ao dashboard após sucesso
+      window.location.href = "/dashboard";
+    } catch (error) {
+      console.error("Erro:", error);
+      setErrorMsg("Email ou senha inválidos.");
+    }
   };
 
   return (
@@ -21,6 +42,7 @@ const Form = () => {
           <Label text="Email" htmlFor="email" />
           <Input
             type="text"
+            id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Exemplo@gmail.com"
@@ -28,16 +50,21 @@ const Form = () => {
         </div>
 
         <div className="mb-6">
-          <Label text="Senha" htmlFor="senha" />
+          <Label text="Senha" htmlFor="password" />
           <Input
             type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Senha"
           />
         </div>
 
-        <Button type="submit" className="w-full mt-4">Login</Button>
+        {errorMsg && <p className="text-red-600 mb-4">{errorMsg}</p>}
+
+        <Button type="submit" className="w-full mt-4">
+          Login
+        </Button>
       </form>
     </LoginContainer>
   );
