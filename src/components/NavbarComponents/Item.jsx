@@ -5,8 +5,8 @@ const Item = ({ item, onClick }) => {
       onClick={onClick}
     >
       <a className="flex items-center">
-        <img src={item.icon} alt={item.name} className="w-6 h-6 mr-2" />
-        <span className="white">{item.name}</span>
+        item.icon
+        <span className="white ml-3 a-solid fa-user">{item.name}</span>
       </a>
     </div>
   );

@@ -1,4 +1,36 @@
+import React, { useState, useEffect } from "react";
+
 const Table = () => {
+  const [requests, setRequests] = useState([]); // Estado para armazenar os dados da API
+  const [loading, setLoading] = useState(true); // Estado para indicar o carregamento
+
+  useEffect(() => {
+    // Função para buscar os dados da API
+    fetch("http://localhost:5101/api/Request/ListRequest", {
+      method: "GET",
+      credentials: "include", // necessário para enviar o cookie
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Erro: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setRequests(data.data); // Atualiza o estado com os dados recebidos
+        setLoading(false); // Define o carregamento como concluído
+      })
+      .catch((error) => {
+        console.error("Erro ao fazer a requisição:", error);
+        setLoading(false); // Define o carregamento como concluído, mesmo em caso de erro
+      });
+  }, []); // O array vazio [] garante que a requisição seja feita apenas uma vez após o componente ser montado
+
+  // Renderiza uma mensagem de "Carregando..." enquanto os dados estão sendo carregados
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -14,9 +46,9 @@ const Table = () => {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                 />
               </svg>
@@ -33,31 +65,56 @@ const Table = () => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
-                Product name
+                ID
               </th>
               <th scope="col" className="px-6 py-3">
-                Color
+                Agente
               </th>
               <th scope="col" className="px-6 py-3">
-                Category
+                Caminho
               </th>
               <th scope="col" className="px-6 py-3">
-                Price
+                IP
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Maliciosa
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Data
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border-gray-200">
-              <th
-                scope="row"
-                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-              >
-                Apple MacBook Pro 17"
-              </th>
-              <td className="px-6 py-4">Silver</td>
-              <td className="px-6 py-4">Laptop</td>
-              <td className="px-6 py-4">$2999</td>
-            </tr>
+            {requests.length > 0 ? (
+              requests.map((request) => (
+                <tr
+                  key={request.id}
+                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 border-gray-200"
+                >
+                  <th
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {request.id}
+                  </th>
+                  <td className="px-6 py-4">{request.agent}</td>
+                  <td className="px-6 py-4">{request.path}</td>
+                  <td className="px-6 py-4">{request.ip}</td>
+                  <td className="px-6 py-4">
+                    {request.isMalicious ? "Sim" : "Não"}
+                  </td>
+                  <td className="px-6 py-4">
+                    {new Date(request.date).toLocaleString()}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="px-6 py-4 text-center">
+                  No data available
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
