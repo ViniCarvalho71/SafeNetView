@@ -6,7 +6,9 @@ const Home = () => {
     <div>
       <Kpi />
       <div className="mt-12">
-        <Table />
+        <Table labels={["ID", "Agente", "Caminho", "Ip", "Maliciosa", "Data"]}
+          api = "http://localhost:5101/api/Request/ListRequest/"
+        />
       </div>
     </div>
   );
