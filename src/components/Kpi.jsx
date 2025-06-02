@@ -4,7 +4,7 @@ import Card from "./KPIComponents/Card";
 const Kpi = () => {
   const [kpis, setKpis] = useState(1);
   useEffect(() => {
-    fetch(`http://localhost:5101/api/Request/Kpis`, {
+    fetch(`http://54.232.249.80:8080/api/Request/Kpis`, {
       method: "GET",
       credentials: "include",
     })

@@ -6,7 +6,7 @@ const UrlsMaisAtacadas = () => {
     <div>
       <div className="mt-12">
         <TableUrlsMaisAtacadas labels={["Path", "Quantidade"]}
-          api = "http://localhost:5101/api/Request/PathsMaisAtacados/"
+          api = "http://54.232.249.80:8080/api/Request/PathsMaisAtacados/"
         />
       </div>
     </div>

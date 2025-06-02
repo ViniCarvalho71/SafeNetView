@@ -13,7 +13,7 @@ const Form = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5101/login?useCookies=true", {
+      const response = await fetch("http://54.232.249.80:8080/login?useCookies=true", {
         method: "POST",
         credentials: "include",
         headers: {

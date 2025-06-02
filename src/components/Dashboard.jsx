@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [selectedPage, setSelectedPage] = useState("Home");
 
   useEffect(() => {
-    fetch("http://localhost:5101/auth/check", {
+    fetch("http://54.232.249.80:8080/auth/check", {
       method: "GET",
       credentials: "include",
     })
