@@ -1,14 +1,12 @@
 const Item = ({ item, onClick }) => {
   return (
-    <div
-      className="flex items-center justify-between p-2 hover:bg-gray-200 cursor-pointer"
+    <li
+      className="cursor-pointer text-left px-4 py-2 hover:bg-gray-700 rounded"
       onClick={onClick}
     >
-      <a className="flex items-center">
-        item.icon
-        <span className="white ml-3 a-solid fa-user">{item.name}</span>
-      </a>
-    </div>
+      <span className="mr-2">{item.icon}</span>
+      {item.name}
+    </li>
   );
 };
 

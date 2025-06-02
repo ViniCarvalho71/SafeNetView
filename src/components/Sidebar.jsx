@@ -1,14 +1,19 @@
 import Item from "./NavbarComponents/Item";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Sidebar = () => {
+const Sidebar = ({onSelect}) => {
+  const items = [
+    { icon: "🏠", name: "Home" },
+    { icon: "🛑", name: "IPs Maliciosos" },
+    { icon: "🌐", name: "Urls Mais Atacadas" },
+  ];
+
   return (
-    <div className="sidebar">
-      <h2 className="mt-8 mb-12">SafeNet</h2>
+    <div className="sidebar p-4">
+      <h2 className="mt-8 mb-12 text-xl font-bold">SafeNet</h2>
       <ul>
-        <Item item={{ icon: "dsad", name: "Home" }} />
-        <Item item={{ icon: "dsad", name: "IPs Maliciosos" }} />
-        <Item item={{ icon: "dsad", name: "Urls Mais Atacadas" }} />
+        {items.map((item) => (
+          <Item key={item.name} item={item} onClick={() => onSelect(item.name)} />
+        ))}
       </ul>
     </div>
   );

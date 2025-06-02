@@ -21,9 +21,9 @@ const Kpi = () => {
  
   return (
     <div className="flex flex-row justify-between">
-      <Card label="Requisições Malignas" number = {kpis.requisicoesMaliciosas} />
-      <Card label="Requisições Benignas" number= {kpis.requisicoesBenignas}/>
-      <Card label="Requisições nas últimas 24hrs" number= {kpis.requisicoesNasUltimasVinteQuatroHoras} /> 
+      <Card label="Requisições Maliciosas" txt_color="text-red-700" number = {kpis.requisicoesMaliciosas} />
+      <Card label="Requisições Benignas" txt_color="text-lime-500" number= {kpis.requisicoesBenignas}/>
+      <Card label="Requisições nas últimas 24hrs" txt_color="text-sky-500" number= {kpis.requisicoesNasUltimasVinteQuatroHoras} /> 
     </div>
   );
 };

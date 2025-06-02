@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const Table = ({labels, api}) => {
+const TableHome = ({labels, api}) => {
   const [requests, setRequests] = useState([]); // Estado para armazenar os dados da API
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(2);
-  const [pages, setPages] = useState(1)
+  const [pageSize, setPageSize] = useState(10);
+  const [pages, setPages] = useState()
 
   const handleChanger = (event) => {
     setSearch(event.target.value)
@@ -34,7 +34,7 @@ const Table = ({labels, api}) => {
         console.error("Erro ao fazer a requisição:", error);
         setLoading(false); // Define o carregamento como concluído, mesmo em caso de erro
       });
-  }, [search,currentPage,pageSize]); // O array vazio [] garante que a requisição seja feita apenas uma vez após o componente ser montado
+  }, [search,currentPage,pageSize, api]); // O array vazio [] garante que a requisição seja feita apenas uma vez após o componente ser montado
 
   // Renderiza uma mensagem de "Carregando..." enquanto os dados estão sendo carregados
   if (loading) {
@@ -117,46 +117,43 @@ const Table = ({labels, api}) => {
           </tbody>
         </table>
 
-        {/* PAGINAÇÃO VISUAL */}
-        <div className="flex flex-col justify-center items-center gap-2 mt-4 pb-4">
-        <div>
-        <label
-          htmlFor="limit-select"
-          className="mr-2 text-sm text-gray-700 dark:text-gray-300"
-        >
-          Registros por página:
-        </label>
-        <select
-          id="limit-select"
-          className="px-2 py-1 rounded border border-gray-300 dark:bg-gray-700 dark:text-white"
-          value={pageSize}
-          onChange={(e) => setPageSize(Number(e.target.value))}
-        >
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={25}>25</option>
-        </select>
-        </div>
-        <div>
-          <button
-            className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50 transition-colors duration-200"
-            disabled={currentPage == 1? true : false}
-            onClick={() => {setCurrentPage(prev => prev - 1)}}
-          >
-            Anterior
-          </button>
-          <span className="text-sm text-gray-700 dark:text-gray-300 ml-5 mr-5">
+        <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div>
+            <label
+              htmlFor="limit-select"
+              className="mr-2 text-sm text-gray-700 dark:text-gray-300"
+            >
+              Registros por página:
+            </label>
+            <select
+              id="limit-select"
+              className="px-2 py-1 rounded border border-gray-300 dark:bg-gray-700 dark:text-white"
+              value={pageSize}
+              onChange={(e) => setPageSize(Number(e.target.value))}
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={25}>25</option>
+            </select>
+          </div>
+          <div>
+            <button
+              className="px-4 py-2 bg-gray-200 dark:bg-gray-600 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 transition-colors duration-200"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+            >
+              Anterior
+            </button>
+            <span className="text-sm text-gray-700 dark:text-gray-300 mx-5">
               Página {currentPage} de {pages}
-          </span>
-          <button
-            className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50 transition-colors duration-200"
-            disabled={currentPage == pages? true:false}
-            onClick={() => {
-              setCurrentPage(prev => prev + 1)
-            }}
-          >
-            Próxima
-          </button>
+            </span>
+            <button
+              className="px-4 py-2 bg-gray-200 dark:bg-gray-600 dark:text-white rounded hover:bg-gray-300 dark:hover:bg-gray-500 disabled:opacity-50 transition-colors duration-200"
+              disabled={currentPage === pages}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+            >
+              Próxima
+            </button>
           </div>
         </div>
       </div>
@@ -165,4 +162,4 @@ const Table = ({labels, api}) => {
   );
 };
 
-export default Table;
+export default TableHome;
