@@ -1,10 +1,13 @@
-const Card = ({ label, number, color = "bg-gray-900", txt_color = "text-white" }) => {
+const Card = ({ label, number, color, txt_color, icon }) => {
   return (
-    <div className={`flex flex-col ${color} ${txt_color} p-4 rounded-lg w-[300px] h-[150px] justify-center`}>
-      <div className="text-xl">
-        <div>{label}</div>
-        <div>{number}</div>
+    <div
+      className={`flex flex-col ${color} ${txt_color} p-6 rounded-lg shadow-xl transition-transform duration-300 transform hover:scale-105`}
+    >
+      <div className="flex items-center space-x-4 mb-4">
+        {icon}
+        <div className="text-xl font-bold">{label}</div>
       </div>
+      <div className="text-4xl font-semibold">{number}</div>
     </div>
   );
 };
