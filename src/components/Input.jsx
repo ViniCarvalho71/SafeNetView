@@ -1,11 +1,11 @@
-const Input = ({ type, value, onChange, placeholder }) => {
+const Input = ({ type, value, onChange, placeholder, className }) => {
   return (
     <input
       type={type}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className="rounded-full outline-none p-3 mb-3 text-base w-full"
+      className={`w-full p-3 border border-gray-300 rounded-lg ${className}`}
     />
   );
 };

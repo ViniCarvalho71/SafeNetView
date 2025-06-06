@@ -19,6 +19,11 @@ const Dashboard = () => {
       .catch(() => setIsAuthenticated(false));
   }, []);
 
+  if (isAuthenticated === null) return <div>Carregando...</div>;
+  if (!isAuthenticated) {
+    window.location.href = "/";
+    return null;
+  }
   const renderContent = () => {
     switch (selectedPage) {
       case "Home":
