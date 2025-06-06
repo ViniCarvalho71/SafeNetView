@@ -53,8 +53,8 @@ const TableHome = ({ labels, api }) => {
       </div>
 
       {/* Tabela */}
-      <table className="w-full text-sm text-left text-gray-600">
-        <thead className="text-xs text-gray-700 uppercase bg-gradient-to-r from-purple-600 to-purple-800 text-white">
+      <table className="w-full text-sm text-left text-white">
+        <thead className="text-xs uppercase bg-[#381354] text-white">
           <tr>
             {labels.map((element, index) => (
               <th key={index} className="px-6 py-3">
@@ -91,7 +91,7 @@ const TableHome = ({ labels, api }) => {
       </table>
 
       {/* Paginação */}
-      <div className="flex justify-between items-center p-4 bg-gradient-to-r from-purple-600 to-purple-800 text-white rounded-b-lg">
+      <div className="flex justify-between items-center p-4 bg-[#381354] text-white rounded-b-lg">
         <div>
           <label htmlFor="limit-select" className="mr-2 text-sm">
             Registros por página:

@@ -26,7 +26,7 @@ const Kpi = () => {
       {/* Card: Requisições Maliciosas */}
       <Card
         label="Requisições Maliciosas"
-        txt_color="text-black"
+        txt_color="text-white"
         number={kpis.requisicoesMaliciosas}
         color="bg-red-600"
         icon={<FaExclamationCircle className="text-white text-2xl" />}
@@ -35,7 +35,7 @@ const Kpi = () => {
       {/* Card: Requisições Benignas */}
       <Card
         label="Requisições Benignas"
-        txt_color="text-black"
+        txt_color="text-white"
         number={kpis.requisicoesBenignas}
         color="bg-green-600"
         icon={<FaCheckCircle className="text-white text-2xl" />}
@@ -44,7 +44,7 @@ const Kpi = () => {
       {/* Card: Requisições nas Últimas 24hrs */}
       <Card
         label="Requisições nas últimas 24hrs"
-        txt_color="text-black"
+        txt_color="text-white"
         number={kpis.requisicoesNasUltimasVinteQuatroHoras}
         color="bg-blue-600"
         icon={<FaClock className="text-white text-2xl" />}
