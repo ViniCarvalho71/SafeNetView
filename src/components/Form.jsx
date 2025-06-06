@@ -37,8 +37,9 @@ const Form = () => {
 
   return (
     <LoginContainer>
-      <form onSubmit={handleSubmit} className="w-full">
-        <div className="mb-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Campo de Email */}
+        <div className="mb-6">
           <Label text="Email" htmlFor="email" />
           <Input
             type="text"
@@ -46,9 +47,11 @@ const Form = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Exemplo@gmail.com"
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white text-black focus:ring-2 focus:ring-purple-600"
           />
         </div>
 
+        {/* Campo de Senha */}
         <div className="mb-6">
           <Label text="Senha" htmlFor="password" />
           <Input
@@ -57,12 +60,15 @@ const Form = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Senha"
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white text-black focus:ring-2 focus:ring-purple-600"
           />
         </div>
 
+        {/* Exibição de erro */}
         {errorMsg && <p className="text-red-600 mb-4">{errorMsg}</p>}
 
-        <Button type="submit" className="w-full mt-4">
+        {/* Botão de Login */}
+        <Button type="submit" className="w-full bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition duration-300">
           Login
         </Button>
       </form>
